@@ -1,0 +1,356 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: #f4f7fb;
+  color: #10233c;
+  --primary: #184ad8;
+  --primary-strong: #102f8a;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --border: #d9e2f1;
+  --text: #15304e;
+  --muted: #64748b;
+  --danger: #e11d48;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(24, 74, 216, 0.08), transparent 32%),
+    var(--bg);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.miso-page-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.miso-hero-banner {
+  margin-bottom: 24px;
+}
+
+.miso-hero-banner h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #13233d;
+}
+
+.miso-eyebrow {
+  margin: 0 0 8px;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.miso-subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.miso-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border: 1px solid #dce6f4;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(17, 34, 70, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.miso-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e9eff8;
+}
+
+.miso-card-header h2 {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #112745;
+}
+
+.miso-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.miso-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.miso-field-label {
+  color: #243954;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.miso-input,
+.miso-input:focus {
+  width: 100%;
+  border: 1px solid #d2ddf0;
+  border-radius: 10px;
+  background: #fbfdff;
+  color: #1c2f46;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.miso-input:hover {
+  border-color: #aac1ee;
+}
+
+.miso-input:focus,
+.miso-input:focus-visible {
+  outline: none;
+  border-color: rgba(24, 74, 216, 0.55);
+  box-shadow: 0 0 0 3px rgba(24, 74, 216, 0.12);
+}
+
+.miso-input-error {
+  border-color: rgba(225, 29, 72, 0.7);
+}
+
+select.miso-input {
+  min-width: 140px;
+  padding-right: 28px;
+}
+
+.miso-field-error {
+  color: #b42348;
+  font-size: 0.78rem;
+}
+
+.miso-autocomplete-list {
+  position: absolute;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #d2ddf0;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.miso-autocomplete-list li {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #1c2f46;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.miso-autocomplete-list li:hover {
+  background: #eef3fb;
+}
+
+.miso-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dce6f4;
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.miso-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.miso-table thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, #1a3a7f 0%, #17366b 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 1;
+}
+
+.miso-table tbody td {
+  vertical-align: top;
+  padding: 16px 14px;
+  border-bottom: 1px solid #edf2fb;
+  background: #fff;
+}
+
+.miso-table tbody tr:nth-child(even) td {
+  background: #fbfdff;
+}
+
+.miso-table tbody tr:hover td {
+  background: #f5f9ff;
+}
+
+.miso-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.miso-btn,
+.miso-btn-action {
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.miso-btn-primary {
+  background: linear-gradient(135deg, var(--primary), #3b79f8);
+  color: #fff;
+  padding: 10px 16px;
+  box-shadow: 0 10px 20px rgba(24, 74, 216, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.miso-btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 24px rgba(24, 74, 216, 0.34);
+}
+
+.miso-btn-success {
+  background: linear-gradient(135deg, #1a9d5c, #29c179);
+  color: #fff;
+  padding: 10px 16px;
+  box-shadow: 0 10px 20px rgba(26, 157, 92, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.miso-btn-success:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 24px rgba(26, 157, 92, 0.34);
+}
+
+.miso-btn-secondary {
+  background: #eef3fb;
+  color: #224066;
+  padding: 10px 16px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.miso-btn-secondary:hover {
+  background: #e3ecfb;
+  transform: translateY(-1px);
+}
+
+.miso-btn-action {
+  background: #eef3fb;
+  color: #234066;
+  padding: 9px 12px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.miso-btn-action:hover {
+  background: #dfeafc;
+  transform: translateY(-1px);
+}
+
+.miso-btn-action-danger {
+  background: #fff0f5;
+  color: var(--danger);
+}
+
+.miso-btn-action-danger:hover {
+  background: #ffe4ee;
+}
+
+.miso-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.miso-record-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.miso-actions-right {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.miso-save-message {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #edf9f1;
+  color: #0d5f33;
+  border: 1px solid #c9ebd7;
+  box-shadow: 0 8px 20px rgba(40, 112, 76, 0.08);
+}
+
+.miso-save-message-error {
+  background: #fff3f5;
+  color: #b42348;
+  border-color: #f3bfd0;
+  box-shadow: 0 8px 20px rgba(180, 35, 72, 0.08);
+}
+
+@media (max-width: 960px) {
+  .miso-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .miso-page-shell {
+    padding-inline: 14px;
+  }
+
+  .miso-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .miso-card-header,
+  .miso-table-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .miso-actions-right {
+    width: 100%;
+  }
+
+  .miso-actions-right .miso-btn {
+    flex: 1;
+  }
+}

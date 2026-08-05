@@ -1,0 +1,992 @@
+[
+  {
+    "name": "Dongri Buzurg",
+    "city": "Dongri Buzurg",
+    "latitude": 21.550303330249253,
+    "longitude": 79.69379868593555
+  },
+  {
+    "name": "Gobarwahi",
+    "city": "Gobarwahi",
+    "latitude": 21.513892161743563,
+    "longitude": 79.72330716712418
+  },
+  {
+    "name": "Chicholi",
+    "city": "Chicholi",
+    "latitude": 21.46634839095883,
+    "longitude": 79.70633314769114
+  },
+  {
+    "name": "Narkher Junction",
+    "city": "Narkher",
+    "latitude": 21.46988500994317,
+    "longitude": 78.52544686925746
+  },
+  {
+    "name": "Mowad",
+    "city": "Mowad",
+    "latitude": 21.456227394753302,
+    "longitude": 78.45195753022347
+  },
+  {
+    "name": "Pusla",
+    "city": "Pusla",
+    "latitude": 21.492743674876802,
+    "longitude": 78.35452679170041
+  },
+  {
+    "name": "Warud Orange City",
+    "city": "Warud Orange City",
+    "latitude": 21.458608568370163,
+    "longitude": 78.27585411149326
+  },
+  {
+    "name": "Benoda",
+    "city": "Benoda",
+    "latitude": 21.44989188669463,
+    "longitude": 78.18045518337814
+  },
+  {
+    "name": "Kelod",
+    "city": "Kelod",
+    "latitude": 21.465477510496676,
+    "longitude": 78.88658468450903
+  },
+  {
+    "name": "Gondia Junction",
+    "city": "Gondia",
+    "latitude": 21.46128740719484,
+    "longitude": 80.19295625397714
+  },
+  {
+    "name": "Birsola",
+    "city": "Birsola",
+    "latitude": 21.59912943420524,
+    "longitude": 80.2073467204497
+  },
+  {
+    "name": "Nagradham PH",
+    "city": "Nagradham PH",
+    "latitude": 21.498337665723554,
+    "longitude": 80.19931033801903
+  },
+  {
+    "name": "Pratap Bagh",
+    "city": "Pratap Bagh",
+    "latitude": 21.523443803050323,
+    "longitude": 80.20422432204914
+  },
+  {
+    "name": "Gatra Halt",
+    "city": "Gatra",
+    "latitude": 21.558025730228444,
+    "longitude": 80.20536649489864
+  },
+  {
+    "name": "Kachewani",
+    "city": "Kachewani",
+    "latitude": 21.429982270393605,
+    "longitude": 79.98132881540263
+  },
+  {
+    "name": "Gangajhari",
+    "city": "Gangajhari",
+    "latitude": 21.442865009166443,
+    "longitude": 80.05856696784772
+  },
+  {
+    "name": "Arun Nagar",
+    "city": "Arun Nagar",
+    "latitude": 20.707122253740316,
+    "longitude": 79.97889307034069
+  },
+  {
+    "name": "Wadegaon",
+    "city": "Wadegaon",
+    "latitude": 20.764050379256123,
+    "longitude": 79.98161414548971
+  },
+  {
+    "name": "Arjuni",
+    "city": "Arjuni",
+    "latitude": 20.818640799528414,
+    "longitude": 80.02329144716381
+  },
+  {
+    "name": "Barabhati",
+    "city": "Barabhati",
+    "latitude": 20.862157086341796,
+    "longitude": 80.06109595084966
+  },
+  {
+    "name": "Dewalgaon",
+    "city": "Dewalgaon",
+    "latitude": 20.88966120984471,
+    "longitude": 80.07902934226003
+  },
+  {
+    "name": "Sondad",
+    "city": "Sondad",
+    "latitude": 21.086150497102864,
+    "longitude": 80.09611315109213
+  },
+  {
+    "name": "Gond Umri",
+    "city": "Gond Umri",
+    "latitude": 21.02161903884337,
+    "longitude": 80.0897460989708
+  },
+  {
+    "name": "Khodseoni",
+    "city": "Khodseoni",
+    "latitude": 21.155398603747205,
+    "longitude": 80.11265715688015
+  },
+  {
+    "name": "Gonglee",
+    "city": "Gonglee",
+    "latitude": 21.22259275034142,
+    "longitude": 80.14802125055273
+  },
+  {
+    "name": "Pindkepar Halt",
+    "city": "Pindkepar",
+    "latitude": 21.306856495934674,
+    "longitude": 80.18339417196962
+  },
+  {
+    "name": "Hirdamali",
+    "city": "Hirdamali",
+    "latitude": 21.343523316676297,
+    "longitude": 80.19768362917668
+  },
+  {
+    "name": "Gankhera Halt",
+    "city": "Gankhera",
+    "latitude": 21.38542557634116,
+    "longitude": 80.19249991969427
+  },
+  {
+    "name": "Darekasa",
+    "city": "Darekasa",
+    "latitude": 21.270799199856313,
+    "longitude": 80.58060170036298
+  },
+  {
+    "name": "Salekasa",
+    "city": "Salekasa",
+    "latitude": 21.301378592983074,
+    "longitude": 80.49339506897415
+  },
+  {
+    "name": "Dhanoli",
+    "city": "Dhanoli",
+    "latitude": 21.32162527153572,
+    "longitude": 80.42718606058328
+  },
+  {
+    "name": "Amgaon",
+    "city": "Amgaon",
+    "latitude": 21.361421779838906,
+    "longitude": 80.3740801987268
+  },
+  {
+    "name": "Gudma",
+    "city": "Gudma",
+    "latitude": 21.41450977050836,
+    "longitude": 80.28894116572853
+  },
+  {
+    "name": "Madure",
+    "city": "Madure",
+    "latitude": 15.803893294079272,
+    "longitude": 73.81285139328446
+  },
+  {
+    "name": "Sawantwadi Road",
+    "city": "Sawantwadi",
+    "latitude": 15.86683188218958,
+    "longitude": 73.78540165219935
+  },
+  {
+    "name": "Zarap",
+    "city": "Zarap",
+    "latitude": 15.948283389682963,
+    "longitude": 73.73418320375545
+  },
+  {
+    "name": "Kudal",
+    "city": "Kudal",
+    "latitude": 16.0174067553142,
+    "longitude": 73.67805682143481
+  },
+  {
+    "name": "Sindhudurg",
+    "city": "Oros Sindhudurgnagari",
+    "latitude": 16.112236957689035,
+    "longitude": 73.67983708380027
+  },
+  {
+    "name": "Kankavali",
+    "city": "Kankavali",
+    "latitude": 16.259749717779545,
+    "longitude": 73.72011310795425
+  },
+  {
+    "name": "Nandgaon Road",
+    "city": "Nandgaon",
+    "latitude": 16.387645830099707,
+    "longitude": 73.7306317690769
+  },
+  {
+    "name": "Achirne",
+    "city": "Achirne",
+    "latitude": 16.446844582446005,
+    "longitude": 73.74389572213198
+  },
+  {
+    "name": "Vaibhavwadi Road",
+    "city": "Vaibhavwadi",
+    "latitude": 16.51230896206569,
+    "longitude": 73.70801288192553
+  },
+  {
+    "name": "Puntamba Junction",
+    "city": "Puntamba",
+    "latitude": 19.7618046571899,
+    "longitude": 74.62142530301564
+  },
+  {
+    "name": "Sainagar Shirdi Terminus",
+    "city": "Sainagar Shirdi",
+    "latitude": 19.7807213905316,
+    "longitude": 74.48082594805572
+  },
+  {
+    "name": "Chitali",
+    "city": "Chitali",
+    "latitude": 19.691025140836516,
+    "longitude": 74.62361817147254
+  },
+  {
+    "name": "Belapur",
+    "city": "Belapur",
+    "latitude": 19.619839701778538,
+    "longitude": 74.65985303269275
+  },
+  {
+    "name": "Nipani Vadgaon",
+    "city": "Nipani Vadgaon",
+    "latitude": 19.587946435706613,
+    "longitude": 74.70456399628532
+  },
+  {
+    "name": "Padhegaon",
+    "city": "Padhegaon",
+    "latitude": 19.537249642071647,
+    "longitude": 74.69228618949461
+  },
+  {
+    "name": "Taklimiya",
+    "city": "Taklimiya",
+    "latitude": 19.457774015330273,
+    "longitude": 74.67909457148113
+  },
+  {
+    "name": "Rahuri",
+    "city": "Rahuri",
+    "latitude": 19.413507711398545,
+    "longitude": 74.67743248338964
+  },
+  {
+    "name": "Kopargaon",
+    "city": "Kopargaon",
+    "latitude": 19.903491841116573,
+    "longitude": 74.5034958756849
+  },
+  {
+    "name": "Ankai",
+    "city": "Ankai",
+    "latitude": 20.150654026892898,
+    "longitude": 74.46944543965623
+  },
+  {
+    "name": "Sanvatsar",
+    "city": "Sanvatsar",
+    "latitude": 19.88372771416259,
+    "longitude": 74.56047815304528
+  },
+  {
+    "name": "Kanhegaon",
+    "city": "Kanhegaon",
+    "latitude": 19.81715161966071,
+    "longitude": 74.57151874792442
+  },
+  {
+    "name": "Yeola",
+    "city": "Yeola",
+    "latitude": 20.022608263740636,
+    "longitude": 74.49626895707193
+  },
+  {
+    "name": "Ankai Killa",
+    "city": "Ankai",
+    "latitude": 20.182782084594457,
+    "longitude": 74.43766525296304
+  },
+  {
+    "name": "Nagarsol",
+    "city": "Nagarsol",
+    "latitude": 20.101334358973574,
+    "longitude": 74.54294296413912
+  },
+  {
+    "name": "Tarur",
+    "city": "Tarur",
+    "latitude": 20.024594869218394,
+    "longitude": 74.6476175392469
+  },
+  {
+    "name": "Rotegaon",
+    "city": "Rotegaon",
+    "latitude": 19.955559733528656,
+    "longitude": 74.75816801169609
+  },
+  {
+    "name": "Parsoda",
+    "city": "Parsoda",
+    "latitude": 19.953872935324032,
+    "longitude": 74.87530919072121
+  },
+  {
+    "name": "Summit",
+    "city": "Summit",
+    "latitude": 20.211506003339267,
+    "longitude": 74.34391045292193
+  },
+  {
+    "name": "Lasalgaon",
+    "city": "Lasalgaon",
+    "latitude": 20.154994654133684,
+    "longitude": 74.22617842408668
+  },
+  {
+    "name": "Ugaon",
+    "city": "Ugaon",
+    "latitude": 20.12347940097165,
+    "longitude": 74.139666248803
+  },
+  {
+    "name": "Manmad B Cabin",
+    "city": "Manmad B",
+    "latitude": 20.25158680385269,
+    "longitude": 74.44442435772213
+  },
+  {
+    "name": "Panevadi",
+    "city": "Panevadi",
+    "latitude": 20.26254976542495,
+    "longitude": 74.48345240006262
+  },
+  {
+    "name": "Hisvahal",
+    "city": "Hisvahal",
+    "latitude": 20.281129971013048,
+    "longitude": 74.56036604689109
+  },
+  {
+    "name": "Panjhan",
+    "city": "Panjhan",
+    "latitude": 20.275053059410716,
+    "longitude": 74.61109462424764
+  },
+  {
+    "name": "Nandgaon",
+    "city": "Nandgaon",
+    "latitude": 20.309395694780523,
+    "longitude": 74.66089171423161
+  },
+  {
+    "name": "Nandgaon Yard Cabin",
+    "city": "Nandgaon",
+    "latitude": 20.314525992297554,
+    "longitude": 74.66598018432758
+  },
+  {
+    "name": "Pimpar Khed",
+    "city": "Pimpar Khed",
+    "latitude": 20.307483057958844,
+    "longitude": 74.75629974048393
+  },
+  {
+    "name": "Manmad Junction",
+    "city": "Manmad",
+    "latitude": 20.25077954458138,
+    "longitude": 74.43924719516151
+  },
+  {
+    "name": "Naydongri",
+    "city": "Naydongri",
+    "latitude": 20.349280757613784,
+    "longitude": 74.83748714742943
+  },
+  {
+    "name": "Rohini",
+    "city": "Rohini",
+    "latitude": 20.364325621495023,
+    "longitude": 74.86295049063914
+  },
+  {
+    "name": "Shirud",
+    "city": "Shirud",
+    "latitude": 20.734059802733658,
+    "longitude": 74.87804108068792
+  },
+  {
+    "name": "Borvihir",
+    "city": "Borvihir",
+    "latitude": 20.783855965661825,
+    "longitude": 74.84132526954944
+  },
+  {
+    "name": "Mohadi Pragane Laling",
+    "city": "Mohadi Pragane Laling",
+    "latitude": 20.86294805531902,
+    "longitude": 74.77945872802177
+  },
+  {
+    "name": "Dhule",
+    "city": "Dhule",
+    "latitude": 20.887882933998476,
+    "longitude": 74.76821115231802
+  },
+  {
+    "name": "Hol",
+    "city": "Hol",
+    "latitude": 21.198230805394346,
+    "longitude": 74.78563111252608
+  },
+  {
+    "name": "Betawad",
+    "city": "Betawad",
+    "latitude": 21.149910153339206,
+    "longitude": 74.88633930136264
+  },
+  {
+    "name": "Nardana",
+    "city": "Nardana",
+    "latitude": 21.17798697488121,
+    "longitude": 74.82827825065228
+  },
+  {
+    "name": "Sindkheda",
+    "city": "Sindkheda",
+    "latitude": 21.244248722879234,
+    "longitude": 74.72389750099923
+  },
+  {
+    "name": "Kolde",
+    "city": "Kolde",
+    "latitude": 21.161183353378,
+    "longitude": 73.86860858149805
+  },
+  {
+    "name": "Chinchpada",
+    "city": "Chinchpada",
+    "latitude": 21.19110775459481,
+    "longitude": 73.92013749938226
+  },
+  {
+    "name": "Vambori",
+    "city": "Vambori",
+    "latitude": 19.2990801584822,
+    "longitude": 74.68538485537489
+  },
+  {
+    "name": "Dehare Cabin",
+    "city": "Dehare",
+    "latitude": 19.2413651068271,
+    "longitude": 74.67415936026083
+  },
+  {
+    "name": "Vilad",
+    "city": "Vilad",
+    "latitude": 19.198490161125243,
+    "longitude": 74.67468999959074
+  },
+  {
+    "name": "Nimblak",
+    "city": "Nimblak",
+    "latitude": 19.11903311901591,
+    "longitude": 74.68896077183987
+  },
+  {
+    "name": "Ahmednagar Junction",
+    "city": "Ahmednagar",
+    "latitude": 19.074091519923776,
+    "longitude": 74.7219473582304
+  },
+  {
+    "name": "Asangaon",
+    "city": "Asangaon",
+    "latitude": 19.43951843997744,
+    "longitude": 73.30796421046064
+  },
+  {
+    "name": "Vasind",
+    "city": "Vasind",
+    "latitude": 19.406028379159235,
+    "longitude": 73.26684807556471
+  },
+  {
+    "name": "Atgaon",
+    "city": "Atgaon",
+    "latitude": 19.502925923762156,
+    "longitude": 73.32884761626345
+  },
+  {
+    "name": "Thansit",
+    "city": "Thansit",
+    "latitude": 19.550320655755478,
+    "longitude": 73.35229821580712
+  },
+  {
+    "name": "Khardi",
+    "city": "Khardi",
+    "latitude": 19.580173184276223,
+    "longitude": 73.39402179598974
+  },
+  {
+    "name": "Oombermali",
+    "city": "Oombermali",
+    "latitude": 19.62837748029726,
+    "longitude": 73.42294615215643
+  },
+  {
+    "name": "Kasara",
+    "city": "Kasara",
+    "latitude": 19.648089250745656,
+    "longitude": 73.4732234886778
+  },
+  {
+    "name": "Igatpuri",
+    "city": "Igatpuri",
+    "latitude": 19.694581456430047,
+    "longitude": 73.56284393545587
+  },
+  {
+    "name": "Ghoti",
+    "city": "Ghoti",
+    "latitude": 19.724046171354,
+    "longitude": 73.63646779720366
+  },
+  {
+    "name": "Padli",
+    "city": "Padli",
+    "latitude": 19.781391688607336,
+    "longitude": 73.66218864338789
+  },
+  {
+    "name": "Asvali",
+    "city": "Asvali",
+    "latitude": 19.823100546699038,
+    "longitude": 73.71298927102015
+  },
+  {
+    "name": "Lahavit",
+    "city": "Lahavit",
+    "latitude": 19.822946719214908,
+    "longitude": 73.78488503826598
+  },
+  {
+    "name": "Devlali",
+    "city": "Devlali",
+    "latitude": 19.8971037773553,
+    "longitude": 73.83676333252379
+  },
+  {
+    "name": "Nashik Road",
+    "city": "Nashik",
+    "latitude": 19.94727122857255,
+    "longitude": 73.84247023699731
+  },
+  {
+    "name": "Odha",
+    "city": "Odha",
+    "latitude": 20.01782475666121,
+    "longitude": 73.91317566552482
+  },
+  {
+    "name": "Khervadi",
+    "city": "Khervadi",
+    "latitude": 20.04705474080228,
+    "longitude": 73.97467524795383
+  },
+  {
+    "name": "Igatpuri Yard",
+    "city": "Igatpuri",
+    "latitude": 19.69260939450316,
+    "longitude": 73.578926529683
+  },
+  {
+    "name": "Block And Catch Siding Cabin 1",
+    "city": "Block And Catch Siding 1",
+    "latitude": 19.70045154257824,
+    "longitude": 73.51923686480357
+  },
+  {
+    "name": "Dhekwad",
+    "city": "Dhekwad",
+    "latitude": 21.35361494329612,
+    "longitude": 74.16230262705125
+  },
+  {
+    "name": "Nandurbar",
+    "city": "Nandurbar",
+    "latitude": 21.373658644372355,
+    "longitude": 74.24443841418828
+  },
+  {
+    "name": "Choupale",
+    "city": "Choupale",
+    "latitude": 21.37540809310293,
+    "longitude": 74.29384571798394
+  },
+  {
+    "name": "Tisi",
+    "city": "Tisi",
+    "latitude": 21.38283041056699,
+    "longitude": 74.36817017582183
+  },
+  {
+    "name": "Ranala",
+    "city": "Ranala",
+    "latitude": 21.378045665904462,
+    "longitude": 74.45865463212164
+  },
+  {
+    "name": "Dondaicha",
+    "city": "Dondaicha",
+    "latitude": 21.33157967143005,
+    "longitude": 74.56241276034959
+  },
+  {
+    "name": "Vikhran",
+    "city": "Vikhran",
+    "latitude": 21.295263238669175,
+    "longitude": 74.62961742367214
+  },
+  {
+    "name": "Kasbe Sukene",
+    "city": "Kasbe Sukene",
+    "latitude": 20.074292151759757,
+    "longitude": 74.03126728098515
+  },
+  {
+    "name": "Niphad",
+    "city": "Niphad",
+    "latitude": 20.0967862146472,
+    "longitude": 74.0800019128213
+  },
+  {
+    "name": "Sonshelu",
+    "city": "Sonshelu",
+    "latitude": 21.266333115731292,
+    "longitude": 74.67448725342437
+  },
+  {
+    "name": "Khatgaon",
+    "city": "Khatgaon",
+    "latitude": 21.252342801843636,
+    "longitude": 73.98397966888335
+  },
+  {
+    "name": "Khandbara",
+    "city": "Khandbara",
+    "latitude": 21.30466454476629,
+    "longitude": 74.04508325417221
+  },
+  {
+    "name": "Bhadwad",
+    "city": "Bhadwad",
+    "latitude": 21.32470932563332,
+    "longitude": 74.1036873813876
+  },
+  {
+    "name": "Naigaon",
+    "city": "Naigaon",
+    "latitude": 19.350644751746852,
+    "longitude": 72.84716046769773
+  },
+  {
+    "name": "Bhayandar",
+    "city": "Bhayandar",
+    "latitude": 19.311306881143445,
+    "longitude": 72.852905824557
+  },
+  {
+    "name": "Mira Road",
+    "city": "Bhayandar",
+    "latitude": 19.279953521753587,
+    "longitude": 72.85579029067982
+  },
+  {
+    "name": "Dahisar",
+    "city": "Mumbai",
+    "latitude": 19.250070376649663,
+    "longitude": 72.85967633342861
+  },
+  {
+    "name": "Borivali",
+    "city": "Mumbai",
+    "latitude": 19.229023695544413,
+    "longitude": 72.85737339529827
+  },
+  {
+    "name": "Kandivli EMU Shed",
+    "city": "Mumbai",
+    "latitude": 19.20849628304448,
+    "longitude": 72.85420240612572
+  },
+  {
+    "name": "Kandivli",
+    "city": "Mumbai",
+    "latitude": 19.20426209517293,
+    "longitude": 72.8515934865382
+  },
+  {
+    "name": "Malad",
+    "city": "Mumbai",
+    "latitude": 19.18690421851642,
+    "longitude": 72.8486103243118
+  },
+  {
+    "name": "Goregaon",
+    "city": "Mumbai",
+    "latitude": 19.16443685640797,
+    "longitude": 72.8493643899242
+  },
+  {
+    "name": "Ram Mandir",
+    "city": "Mumbai",
+    "latitude": 19.147691143467757,
+    "longitude": 72.85122045213335
+  },
+  {
+    "name": "Andheri",
+    "city": "Mumbai",
+    "latitude": 19.119787926830977,
+    "longitude": 72.84657200291466
+  },
+  {
+    "name": "Andheri Metro",
+    "city": "Mumbai",
+    "latitude": 19.1205389194329,
+    "longitude": 72.84871230645273
+  },
+  {
+    "name": "Ville Parle",
+    "city": "Mumbai",
+    "latitude": 19.09935932395755,
+    "longitude": 72.84430246414657
+  },
+  {
+    "name": "Santa Cruz",
+    "city": "Mumbai",
+    "latitude": 19.08173706116191,
+    "longitude": 72.84204651149885
+  },
+  {
+    "name": "Khar Road",
+    "city": "Mumbai",
+    "latitude": 19.06969012937422,
+    "longitude": 72.83981572066222
+  },
+  {
+    "name": "Bandra Terminus",
+    "city": "Mumbai",
+    "latitude": 19.06461774740241,
+    "longitude": 72.84169953901699
+  },
+  {
+    "name": "Bandra",
+    "city": "Mumbai",
+    "latitude": 19.05498648641937,
+    "longitude": 72.8401891386477
+  },
+  {
+    "name": "Mahim Junction",
+    "city": "Mumbai",
+    "latitude": 19.040635479651083,
+    "longitude": 72.84661913482267
+  },
+  {
+    "name": "Juchandra",
+    "city": "Naigaon",
+    "latitude": 19.35985193042457,
+    "longitude": 72.87298699079366
+  },
+  {
+    "name": "Kaman Road",
+    "city": "Navghar",
+    "latitude": 19.336157352729938,
+    "longitude": 72.91879355407978
+  },
+  {
+    "name": "Kharbav",
+    "city": "Chinchoti Anjur Phata",
+    "latitude": 19.29830234124456,
+    "longitude": 72.9844656789512
+  },
+  {
+    "name": "Bhiwandi Road",
+    "city": "Bhiwandi",
+    "latitude": 19.268772791202263,
+    "longitude": 73.04653140752009
+  },
+  {
+    "name": "Ulhas Bridge Cabin",
+    "city": "Bhiwandi",
+    "latitude": 19.241403558683793,
+    "longitude": 73.0722741582242
+  },
+  {
+    "name": "Kopar",
+    "city": "Dombivli",
+    "latitude": 19.212427883747758,
+    "longitude": 73.07886746542286
+  },
+  {
+    "name": "Dombivli",
+    "city": "Dombivli",
+    "latitude": 19.218129779448734,
+    "longitude": 73.08735894964782
+  },
+  {
+    "name": "Matunga",
+    "city": "Mumbai",
+    "latitude": 19.02807477320081,
+    "longitude": 72.85016152077137
+  },
+  {
+    "name": "Dadar Central",
+    "city": "Mumbai",
+    "latitude": 19.016959329440528,
+    "longitude": 72.84310026227656
+  },
+  {
+    "name": "Elphinstone Road",
+    "city": "Mumbai",
+    "latitude": 19.008243705748455,
+    "longitude": 72.83736624664775
+  },
+  {
+    "name": "Vadala Road",
+    "city": "Mumbai",
+    "latitude": 19.016467830084824,
+    "longitude": 72.85876135798927
+  },
+  {
+    "name": "Ravli Junction",
+    "city": "Mumbai",
+    "latitude": 19.02478170285089,
+    "longitude": 72.86072240720394
+  },
+  {
+    "name": "Kings Circle",
+    "city": "Mumbai",
+    "latitude": 19.03268867204467,
+    "longitude": 72.8562723877467
+  },
+  {
+    "name": "Guru Tegh Bahadur Nagar",
+    "city": "Mumbai",
+    "latitude": 19.038357073955023,
+    "longitude": 72.86485178559694
+  },
+  {
+    "name": "Sion",
+    "city": "Mumbai",
+    "latitude": 19.04643603484228,
+    "longitude": 72.86335708688053
+  },
+  {
+    "name": "Chunabhatti",
+    "city": "Mumbai",
+    "latitude": 19.05085995909803,
+    "longitude": 72.8691389773241
+  },
+  {
+    "name": "Kurla Junction",
+    "city": "Mumbai",
+    "latitude": 19.065702760199283,
+    "longitude": 72.87919339719272
+  },
+  {
+    "name": "Kalamboli Goods Shed",
+    "city": "Navi Mumbai",
+    "latitude": 19.034256230750803,
+    "longitude": 73.11510687930493
+  },
+  {
+    "name": "Navade Road",
+    "city": "Ghotkamp Koyana vele",
+    "latitude": 19.053889119601802,
+    "longitude": 73.1027159827048
+  },
+  {
+    "name": "Taloje Panchnand",
+    "city": "Navi Mumbai",
+    "latitude": 19.078294667926844,
+    "longitude": 73.0882005120672
+  },
+  {
+    "name": "Nilaje",
+    "city": "Nilaje",
+    "latitude": 19.154559153921664,
+    "longitude": 73.08024053584306
+  },
+  {
+    "name": "Lokmanya Tilak Terminus",
+    "city": "Mumbai",
+    "latitude": 19.06949001244895,
+    "longitude": 72.8920157519289
+  },
+  {
+    "name": "Ghatkopar",
+    "city": "Mumbai",
+    "latitude": 19.08604190676618,
+    "longitude": 72.90815932559416
+  },
+  {
+    "name": "Vikhroli",
+    "city": "Mumbai",
+    "latitude": 19.111907168502242,
+    "longitude": 72.92806583778
+  },
+  {
+    "name": "Vidyavihar",
+    "city": "Mumbai",
+    "latitude": 19.080494473149507,
+    "longitude": 72.89840952533667
+  },
+  {
+    "name": "Kanjur Marg",
+    "city": "Mumbai",
+    "latitude": 19.129379484721895,
+    "longitude": 72.92878280297118
+  },
+  {
+    "name": "Bhandup",
+    "city": "Mumbai",
+    "latitude": 19.1438124901005,
+    "longitude": 72.93828701191487
+  },
+  {
+    "name": "Nahur",
+    "city": "Mumbai",
+    "latitude": 19.154713548209262,
+    "longitude": 72.94639334346172
+  }
+]
