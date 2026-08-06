@@ -24,9 +24,14 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 8% 0%, rgba(91, 61, 240, 0.16), transparent 38%),
     radial-gradient(circle at 92% 8%, rgba(18, 184, 166, 0.14), transparent 42%),
@@ -69,6 +74,7 @@ h1, h2, h3 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 32px 20px 56px;
+  width: 100%;
 }
 
 .miso-hero-banner {
@@ -495,8 +501,16 @@ select.miso-input {
 }
 
 @media (max-width: 960px) {
+  .miso-page-shell {
+    padding: 24px 16px 40px;
+  }
+
   .miso-form-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .miso-card {
+    padding: 22px;
   }
 }
 
@@ -517,6 +531,11 @@ select.miso-input {
     grid-template-columns: 1fr;
   }
 
+  .miso-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
   .miso-card-header,
   .miso-table-footer {
     flex-direction: column;
@@ -525,9 +544,63 @@ select.miso-input {
 
   .miso-actions-right {
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .miso-actions-right .miso-btn {
     flex: 1;
+    min-width: 120px;
+  }
+
+  .miso-table thead th,
+  .miso-table tbody td {
+    padding: 12px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .miso-page-shell {
+    padding: 18px 10px 32px;
+  }
+
+  .miso-hero-banner {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .miso-eyebrow {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+  }
+
+  .miso-hero-banner h1 {
+    font-size: 1.3rem;
+  }
+
+  .miso-hero-banner .miso-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .miso-card {
+    padding: 14px;
+  }
+
+  .miso-card-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .miso-btn,
+  .miso-btn-action {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+  }
+
+  .miso-table {
+    min-width: 760px;
+  }
+
+  .miso-status-badge {
+    font-size: 0.72rem;
+    padding: 4px 10px;
   }
 }
