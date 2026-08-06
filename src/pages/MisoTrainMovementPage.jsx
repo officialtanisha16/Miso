@@ -16,6 +16,10 @@ const CURRENT_STATUS_OPTIONS = [
   { value: 'End', label: 'End' },
 ];
 
+const CURRENT_STATUS_OPTIONS_WITHOUT_START = CURRENT_STATUS_OPTIONS.filter(
+  (option) => option.value !== 'Start',
+);
+
 const createBlankRow = (id) => ({
   id,
   currentStation: '',
@@ -443,7 +447,7 @@ function MisoTrainMovementPage() {
                 </tr>
               </thead>
               <tbody>
-                {movementRows.map((row) =>
+                {movementRows.map((row, index) =>
                   row.isExisting ? (
                     <tr key={row.id}>
                       <td>{row.currentStation}</td>
@@ -517,7 +521,7 @@ function MisoTrainMovementPage() {
                           type="select"
                           value={row.currentStatus}
                           onChange={(event) => updateRow(row.id, 'currentStatus', event.target.value)}
-                          options={CURRENT_STATUS_OPTIONS}
+                          options={index === 0 ? CURRENT_STATUS_OPTIONS : CURRENT_STATUS_OPTIONS_WITHOUT_START}
                           placeholder="Select status"
                           disabled={!row.isEditing}
                         />
