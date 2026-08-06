@@ -36,6 +36,19 @@ const formatCoordinate = (value) => {
   return Number.isFinite(number) ? number.toFixed(5) : value;
 };
 
+const statusBadgeClass = (status) => {
+  switch (status) {
+    case 'Start':
+      return 'miso-status-badge miso-status-start';
+    case 'Completed':
+      return 'miso-status-badge miso-status-completed';
+    case 'End':
+      return 'miso-status-badge miso-status-end';
+    default:
+      return 'miso-status-badge miso-status-default';
+  }
+};
+
 const normalizeRowState = (rows) =>
   rows.map((row) => ({
     ...row,
@@ -437,9 +450,15 @@ function MisoTrainMovementPage() {
                       <td>{formatCoordinate(row.latitude)}</td>
                       <td>{formatCoordinate(row.longitude)}</td>
                       <td>{row.movementDateTime}</td>
-                      <td>{row.currentStatus}</td>
+                      <td>
+                        {row.currentStatus ? (
+                          <span className={statusBadgeClass(row.currentStatus)}>{row.currentStatus}</span>
+                        ) : null}
+                      </td>
                       <td>{row.remarks}</td>
-                      <td className="miso-subtitle">Recorded</td>
+                      <td>
+                        <span className="miso-tag-recorded">Recorded</span>
+                      </td>
                     </tr>
                   ) : (
                     <tr key={row.id}>

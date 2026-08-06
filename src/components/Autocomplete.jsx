@@ -1,5 +1,55 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (m === 0) return n;
+  if (n === 0) return m;
+  let prev = new Array(n + 1);
+  let curr = new Array(n + 1);
+  for (let j = 0; j <= n; j += 1) prev[j] = j;
+  for (let i = 1; i <= m; i += 1) {
+    curr[0] = i;
+    for (let j = 1; j <= n; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      curr[j] = Math.min(curr[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+    }
+    [prev, curr] = [curr, prev];
+  }
+  return prev[n];
+}
+
+function fuzzyMatch(options, rawQuery, limit = 8) {
+  const query = rawQuery.trim().toLowerCase();
+  if (!query) {
+    return options.slice(0, limit);
+  }
+
+  const threshold = Math.max(2, Math.floor(query.length * 0.3));
+  const scored = [];
+
+  for (const option of options) {
+    const lower = option.toLowerCase();
+    if (lower.startsWith(query)) {
+      scored.push([option, 0]);
+      continue;
+    }
+    if (lower.includes(query)) {
+      scored.push([option, 1]);
+      continue;
+    }
+    if (Math.abs(lower.length - query.length) <= threshold + 2) {
+      const distance = levenshtein(query, lower);
+      if (distance <= threshold) {
+        scored.push([option, 10 + distance]);
+      }
+    }
+  }
+
+  scored.sort((a, b) => a[1] - b[1]);
+  return scored.slice(0, limit).map(([option]) => option);
+}
 
 export default function Autocomplete({
   label,
@@ -52,10 +102,7 @@ export default function Autocomplete({
     setIsOpen(true);
   };
 
-  const query = (value || '').trim().toLowerCase();
-  const filtered = (
-    query ? options.filter((option) => option.toLowerCase().includes(query)) : options
-  ).slice(0, 8);
+  const filtered = useMemo(() => fuzzyMatch(options, value || ''), [options, value]);
 
   const handleSelect = (option) => {
     onChange({ target: { value: option } });
