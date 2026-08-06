@@ -489,6 +489,13 @@ select.miso-input {
   font-weight: 600;
 }
 
+.miso-select-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #0a8a5f;
+  cursor: pointer;
+}
+
 @keyframes miso-fade-in {
   from {
     opacity: 0;

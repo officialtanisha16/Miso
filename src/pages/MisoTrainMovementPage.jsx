@@ -40,6 +40,18 @@ const formatCoordinate = (value) => {
   return Number.isFinite(number) ? number.toFixed(5) : value;
 };
 
+const MONTH_ABBREVIATIONS = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
+const formatNowAsMovementDateTime = () => {
+  const now = new Date();
+  const pad = (value) => String(value).padStart(2, '0');
+  return `${pad(now.getDate())}-${MONTH_ABBREVIATIONS[now.getMonth()]}-${now.getFullYear()} ${pad(
+    now.getHours(),
+  )}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+};
+
 const statusBadgeClass = (status) => {
   switch (status) {
     case 'Start':
@@ -111,6 +123,7 @@ function MisoTrainMovementPage() {
             ...row,
             isEditing: false,
             isExisting: true,
+            checked: false,
             errors: {},
           })),
         );
@@ -202,6 +215,34 @@ function MisoTrainMovementPage() {
   const deleteRow = (rowId) => {
     setMovementRows((currentRows) => currentRows.filter((row) => row.id !== rowId));
     setSaveMessage('');
+  };
+
+  const toggleRowChecked = (rowId) => {
+    setMovementRows((currentRows) =>
+      currentRows.map((row) => {
+        if (row.id !== rowId) {
+          return row;
+        }
+
+        const nextChecked = !row.checked;
+
+        if (nextChecked) {
+          return {
+            ...row,
+            checked: nextChecked,
+            currentStatus: row.currentStatus === 'Planned' ? 'Completed' : row.currentStatus,
+            movementDateTime: formatNowAsMovementDateTime(),
+          };
+        }
+
+        return {
+          ...row,
+          checked: nextChecked,
+          currentStatus: row.currentStatus === 'Completed' ? 'Planned' : row.currentStatus,
+          movementDateTime: '',
+        };
+      }),
+    );
   };
 
   const handleNextFromDetails = () => {
@@ -440,8 +481,9 @@ function MisoTrainMovementPage() {
                   <th style={{ minWidth: 220 }}>Current Station</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
-                  <th>Movement Date &amp; Time</th>
                   <th>Current Status</th>
+                  <th style={{ textAlign: 'center' }}>Status Update</th>
+                  <th>Movement Date &amp; Time</th>
                   <th>Remarks</th>
                   <th>Actions</th>
                 </tr>
@@ -453,12 +495,20 @@ function MisoTrainMovementPage() {
                       <td>{row.currentStation}</td>
                       <td>{formatCoordinate(row.latitude)}</td>
                       <td>{formatCoordinate(row.longitude)}</td>
-                      <td>{row.movementDateTime}</td>
                       <td>
                         {row.currentStatus ? (
                           <span className={statusBadgeClass(row.currentStatus)}>{row.currentStatus}</span>
                         ) : null}
                       </td>
+                      <td style={{ textAlign: 'center' }}>
+                        <input
+                          type="checkbox"
+                          className="miso-select-checkbox"
+                          checked={Boolean(row.checked)}
+                          onChange={() => toggleRowChecked(row.id)}
+                        />
+                      </td>
+                      <td>{row.movementDateTime}</td>
                       <td>{row.remarks}</td>
                       <td>
                         <span className="miso-tag-recorded">Recorded</span>
@@ -507,22 +557,23 @@ function MisoTrainMovementPage() {
                       </td>
                       <td>
                         <FormField
-                          label="Movement Date &amp; Time"
-                          type="datetime-local"
-                          value={row.movementDateTime}
-                          onChange={(event) => updateRow(row.id, 'movementDateTime', event.target.value)}
-                          error={row.errors?.movementDateTime}
-                          disabled={!row.isEditing}
-                        />
-                      </td>
-                      <td>
-                        <FormField
                           label="Current Status"
                           type="select"
                           value={row.currentStatus}
                           onChange={(event) => updateRow(row.id, 'currentStatus', event.target.value)}
                           options={index === 0 ? CURRENT_STATUS_OPTIONS : CURRENT_STATUS_OPTIONS_WITHOUT_START}
                           placeholder="Select status"
+                          disabled={!row.isEditing}
+                        />
+                      </td>
+                      <td />
+                      <td>
+                        <FormField
+                          label="Movement Date &amp; Time"
+                          type="datetime-local"
+                          value={row.movementDateTime}
+                          onChange={(event) => updateRow(row.id, 'movementDateTime', event.target.value)}
+                          error={row.errors?.movementDateTime}
                           disabled={!row.isEditing}
                         />
                       </td>
@@ -570,9 +621,11 @@ function MisoTrainMovementPage() {
                   ← Back
                 </button>
               ) : null}
-              <button className="miso-btn miso-btn-success" onClick={addMovementRow}>
-                + Add Movement
-              </button>
+              {!isExistingTrain ? (
+                <button className="miso-btn miso-btn-success" onClick={addMovementRow}>
+                  + Add Movement
+                </button>
+              ) : null}
               <button className="miso-btn miso-btn-secondary" onClick={handleCancel}>
                 Cancel
               </button>
