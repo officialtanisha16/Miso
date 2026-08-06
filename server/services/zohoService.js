@@ -197,6 +197,33 @@ export async function getTrainFromZoho(recordId) {
   return mapZohoRecord(record);
 }
 
+export async function updateMovementHistoryInZoho(recordId, movementHistory = []) {
+  requireZohoConfig(ZOHO_OWNER_NAME, ZOHO_APP_NAME, ZOHO_REPORT_NAME);
+
+  const mappedHistory = movementHistory.map((row) => ({
+    Current_Station: row.currentStation,
+    Latitude: roundCoordinate(row.latitude),
+    Longitude: roundCoordinate(row.longitude),
+    Movement_Date_Time: row.movementDateTime,
+    Current_Status: row.currentStatus || '',
+    Remarks: row.remarks || '',
+  }));
+
+  const responseData = await callZoho({
+    method: 'patch',
+    url: `${ZOHO_API_BASE}/report/${ZOHO_REPORT_NAME}/${recordId}`,
+    data: {
+      data: {
+        Movement_History: mappedHistory,
+      },
+    },
+  });
+
+  assertZohoSuccess(responseData);
+
+  return responseData;
+}
+
 export async function addMovementToZoho(recordId, row) {
   requireZohoConfig(ZOHO_OWNER_NAME, ZOHO_APP_NAME, ZOHO_REPORT_NAME);
 

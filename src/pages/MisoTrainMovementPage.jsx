@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import FormField from '../components/FormField.jsx';
 import Autocomplete from '../components/Autocomplete.jsx';
-import { saveTrain, getTrain, addMovement } from '../services/trainService.js';
+import { saveTrain, getTrain, updateMovements } from '../services/trainService.js';
 import railwayStations from '../data/railwayStations.json';
 
 const STATION_LOOKUP = new Map(
@@ -123,7 +123,7 @@ function MisoTrainMovementPage() {
             ...row,
             isEditing: false,
             isExisting: true,
-            checked: false,
+            checked: row.currentStatus === 'Completed' || row.currentStatus === 'End',
             errors: {},
           })),
         );
@@ -217,32 +217,55 @@ function MisoTrainMovementPage() {
     setSaveMessage('');
   };
 
-  const toggleRowChecked = (rowId) => {
-    setMovementRows((currentRows) =>
-      currentRows.map((row) => {
-        if (row.id !== rowId) {
-          return row;
-        }
+  const toggleRowChecked = async (rowId) => {
+    const updatedRows = movementRows.map((row) => {
+      if (row.id !== rowId) {
+        return row;
+      }
 
-        const nextChecked = !row.checked;
+      const nextChecked = !row.checked;
 
-        if (nextChecked) {
-          return {
-            ...row,
-            checked: nextChecked,
-            currentStatus: row.currentStatus === 'Planned' ? 'Completed' : row.currentStatus,
-            movementDateTime: formatNowAsMovementDateTime(),
-          };
-        }
-
+      if (nextChecked) {
         return {
           ...row,
           checked: nextChecked,
-          currentStatus: row.currentStatus === 'Completed' ? 'Planned' : row.currentStatus,
-          movementDateTime: '',
+          currentStatus: row.currentStatus === 'Planned' ? 'Completed' : row.currentStatus,
+          movementDateTime: formatNowAsMovementDateTime(),
         };
-      }),
-    );
+      }
+
+      return {
+        ...row,
+        checked: nextChecked,
+        currentStatus: row.currentStatus === 'Completed' ? 'Planned' : row.currentStatus,
+        movementDateTime: '',
+      };
+    });
+
+    setMovementRows(updatedRows);
+
+    if (!isExistingTrain) {
+      return;
+    }
+
+    try {
+      setSaveError('');
+      setSaveMessage('');
+
+      const movementHistory = updatedRows.map((row) => ({
+        currentStation: row.currentStation,
+        latitude: row.latitude,
+        longitude: row.longitude,
+        movementDateTime: row.movementDateTime,
+        currentStatus: row.currentStatus,
+        remarks: row.remarks,
+      }));
+
+      const response = await updateMovements(trainId, movementHistory);
+      setSaveMessage(response?.message || 'Movement status updated in Zoho Creator.');
+    } catch (error) {
+      setSaveError(error?.response?.data?.message || 'Unable to update the movement history.');
+    }
   };
 
   const handleNextFromDetails = () => {
@@ -274,36 +297,8 @@ function MisoTrainMovementPage() {
     setSaveMessage(response?.message || 'Train details and movement history saved successfully.');
   };
 
-  const handleSaveNewStops = async (nextRows) => {
-    const newRows = nextRows.filter((row) => !row.isExisting);
-
-    for (const row of newRows) {
-      // eslint-disable-next-line no-await-in-loop
-      await addMovement(trainId, {
-        currentStation: row.currentStation,
-        latitude: row.latitude,
-        longitude: row.longitude,
-        movementDateTime: row.movementDateTime,
-        currentStatus: row.currentStatus,
-        remarks: row.remarks,
-      });
-    }
-
-    setSaveMessage(
-      newRows.length === 1
-        ? 'New stop added to this train.'
-        : `${newRows.length} new stops added to this train.`,
-    );
-    loadTrain();
-  };
-
   const handleSave = async () => {
-    const rowsToValidate = movementRows.filter((row) => !row.isExisting);
     const nextRows = movementRows.map((row) => {
-      if (row.isExisting) {
-        return row;
-      }
-
       const errors = validateRow(row);
       return {
         ...row,
@@ -312,11 +307,11 @@ function MisoTrainMovementPage() {
       };
     });
 
-    const hasInvalidRows = rowsToValidate.some(
+    const hasInvalidRows = movementRows.some(
       (row) => Object.keys(validateRow(row)).length > 0,
     );
 
-    if (rowsToValidate.length === 0) {
+    if (movementRows.length === 0) {
       setSaveError('Add at least one movement record before saving.');
       setSaveMessage('');
       return;
@@ -333,12 +328,7 @@ function MisoTrainMovementPage() {
       setIsSaving(true);
       setSaveError('');
       setSaveMessage('');
-
-      if (isExistingTrain) {
-        await handleSaveNewStops(nextRows);
-      } else {
-        await handleSaveNewTrain(nextRows);
-      }
+      await handleSaveNewTrain(nextRows);
     } catch (error) {
       setSaveError(error?.response?.data?.message || 'Unable to save the train movement data.');
       setSaveMessage('');
@@ -347,10 +337,36 @@ function MisoTrainMovementPage() {
     }
   };
 
+  const handleUpdateMovements = async () => {
+    try {
+      setIsSaving(true);
+      setSaveError('');
+      setSaveMessage('');
+
+      const movementHistory = movementRows.map((row) => ({
+        currentStation: row.currentStation,
+        latitude: row.latitude,
+        longitude: row.longitude,
+        movementDateTime: row.movementDateTime,
+        currentStatus: row.currentStatus,
+        remarks: row.remarks,
+      }));
+
+      const response = await updateMovements(trainId, movementHistory);
+      setSaveMessage(response?.message || 'Movement history updated successfully.');
+      loadTrain();
+    } catch (error) {
+      setSaveError(error?.response?.data?.message || 'Unable to update the movement history.');
+      setSaveMessage('');
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const handleCancel = () => {
     if (isExistingTrain) {
-      setMovementRows((currentRows) => currentRows.filter((row) => row.isExisting));
-      setSaveMessage('Unsaved stops discarded.');
+      loadTrain();
+      setSaveMessage('Changes discarded.');
       setSaveError('');
       return;
     }
@@ -629,9 +645,15 @@ function MisoTrainMovementPage() {
               <button className="miso-btn miso-btn-secondary" onClick={handleCancel}>
                 Cancel
               </button>
-              <button className="miso-btn miso-btn-primary" onClick={handleSave} disabled={isSaving}>
-                {isSaving ? 'Saving...' : isExistingTrain ? 'Save New Stops' : 'Save Train Details'}
-              </button>
+              {isExistingTrain ? (
+                <button className="miso-btn miso-btn-primary" onClick={handleUpdateMovements} disabled={isSaving}>
+                  {isSaving ? 'Updating...' : 'Update'}
+                </button>
+              ) : (
+                <button className="miso-btn miso-btn-primary" onClick={handleSave} disabled={isSaving}>
+                  {isSaving ? 'Saving...' : 'Save Train Details'}
+                </button>
+              )}
             </div>
           </div>
 

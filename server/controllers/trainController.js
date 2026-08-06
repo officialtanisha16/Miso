@@ -3,6 +3,7 @@ import {
   listTrainsFromZoho,
   getTrainFromZoho,
   addMovementToZoho,
+  updateMovementHistoryInZoho,
 } from '../services/zohoService.js';
 
 export async function saveTrain(req, res) {
@@ -63,6 +64,35 @@ export async function getTrain(req, res) {
     });
   } catch (error) {
     const message = error?.response?.data?.message || error.message || 'Failed to load the train.';
+
+    return res.status(error?.statusCode || 500).json({
+      success: false,
+      message,
+      details: error?.response?.data || null,
+    });
+  }
+}
+
+export async function updateMovements(req, res) {
+  try {
+    const { movementHistory } = req.body;
+
+    if (!Array.isArray(movementHistory)) {
+      return res.status(400).json({
+        success: false,
+        message: 'movementHistory array is required.',
+      });
+    }
+
+    const zohoResponse = await updateMovementHistoryInZoho(req.params.id, movementHistory);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Movement history updated successfully.',
+      data: zohoResponse,
+    });
+  } catch (error) {
+    const message = error?.response?.data?.message || error.message || 'Failed to update movement history.';
 
     return res.status(error?.statusCode || 500).json({
       success: false,
