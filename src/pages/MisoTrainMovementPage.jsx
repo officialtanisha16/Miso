@@ -123,7 +123,7 @@ function MisoTrainMovementPage() {
             ...row,
             isEditing: false,
             isExisting: true,
-            checked: row.currentStatus === 'Completed',
+            checked: row.currentStatus === 'Completed' || row.currentStatus === 'Start',
             errors: {},
           })),
         );
