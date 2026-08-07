@@ -229,7 +229,7 @@ function MisoTrainMovementPage() {
         return {
           ...row,
           checked: nextChecked,
-          currentStatus: row.currentStatus === 'Planned' ? 'Completed' : row.currentStatus,
+          currentStatus: 'Completed',
           movementDateTime: formatNowAsMovementDateTime(),
         };
       }
@@ -237,7 +237,7 @@ function MisoTrainMovementPage() {
       return {
         ...row,
         checked: nextChecked,
-        currentStatus: row.currentStatus === 'Completed' ? 'Planned' : row.currentStatus,
+        currentStatus: 'Planned',
         movementDateTime: '',
       };
     });
