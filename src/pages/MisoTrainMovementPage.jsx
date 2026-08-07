@@ -224,12 +224,13 @@ function MisoTrainMovementPage() {
       }
 
       const nextChecked = !row.checked;
+      const isStartRow = row.currentStatus === 'Start';
 
       if (nextChecked) {
         return {
           ...row,
           checked: nextChecked,
-          currentStatus: 'Completed',
+          currentStatus: isStartRow ? 'Start' : 'Completed',
           movementDateTime: formatNowAsMovementDateTime(),
         };
       }
@@ -237,7 +238,7 @@ function MisoTrainMovementPage() {
       return {
         ...row,
         checked: nextChecked,
-        currentStatus: 'Planned',
+        currentStatus: isStartRow ? 'Start' : 'Planned',
         movementDateTime: '',
       };
     });
