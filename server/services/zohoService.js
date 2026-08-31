@@ -6,6 +6,7 @@ const {
   ZOHO_APP_NAME,
   ZOHO_FORM_NAME,
   ZOHO_REPORT_NAME,
+  ZOHO_ENVIRONMENT = 'development',
 } = process.env;
 
 const ZOHO_API_BASE = `https://creator.zoho.com/api/v2/${ZOHO_OWNER_NAME}/${ZOHO_APP_NAME}`;
@@ -100,6 +101,7 @@ const callZoho = async (request) => {
       headers: {
         Authorization: `Zoho-oauthtoken ${accessToken}`,
         'Content-Type': 'application/json',
+        environment: ZOHO_ENVIRONMENT,
         ...request.headers,
       },
     });
@@ -175,7 +177,12 @@ export async function listTrainsFromZoho() {
     url: `${ZOHO_API_BASE}/report/${ZOHO_REPORT_NAME}`,
   });
 
-  return (responseData?.data || []).map(mapZohoRecord);
+  // Zoho record IDs increase with creation order, so sorting by ID descending
+  // guarantees the most recently created train is always the first row,
+  // regardless of the underlying report's own sort configuration.
+  return (responseData?.data || [])
+    .map(mapZohoRecord)
+    .sort((a, b) => Number(b.id) - Number(a.id));
 }
 
 export async function getTrainFromZoho(recordId) {
