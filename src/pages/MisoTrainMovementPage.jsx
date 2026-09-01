@@ -71,6 +71,20 @@ const normalizeRowState = (rows) =>
     isEditing: Boolean(row.isEditing),
   }));
 
+// The first and last movement rows are always the origin/destination, so their
+// status is derived from position rather than trusted from stored data - this
+// self-heals older records saved before that was enforced (e.g. a destination
+// row stuck showing "Planned" instead of "End").
+const getEffectiveStatus = (currentStatus, index, total) => {
+  if (index === 0) {
+    return 'Start';
+  }
+  if (index === total - 1) {
+    return 'End';
+  }
+  return currentStatus;
+};
+
 const createInitialRows = () => [createBlankRow(1)];
 
 const defaultTrainDetails = {
@@ -117,15 +131,27 @@ function MisoTrainMovementPage() {
           trainName: train?.trainName || '',
           routeName: train?.routeName || '',
         });
+        const history = train?.movementHistory || [];
         setMovementRows(
-          (train?.movementHistory || []).map((row, index) => ({
-            id: `existing-${index}`,
-            ...row,
-            isEditing: false,
-            isExisting: true,
-            checked: row.currentStatus === 'Completed',
-            errors: {},
-          })),
+          history.map((row, index) => {
+            const effectiveStatus = getEffectiveStatus(row.currentStatus, index, history.length);
+            const isBoundaryRow = effectiveStatus === 'Start' || effectiveStatus === 'End';
+
+            const checked = isBoundaryRow ? Boolean(row.movementDateTime) : effectiveStatus === 'Completed';
+
+            return {
+              id: `existing-${index}`,
+              ...row,
+              currentStatus: effectiveStatus,
+              isEditing: false,
+              isExisting: true,
+              checked,
+              // A row already saved as checked can never be unticked again;
+              // only the still-unchecked rows stay interactive after reload.
+              locked: checked,
+              errors: {},
+            };
+          }),
         );
       })
       .catch((err) => {
@@ -217,56 +243,41 @@ function MisoTrainMovementPage() {
     setSaveMessage('');
   };
 
-  const toggleRowChecked = async (rowId) => {
-    const updatedRows = movementRows.map((row) => {
-      if (row.id !== rowId) {
-        return row;
-      }
+  // Ticking/unticking here only changes local state - nothing is sent to Zoho
+  // until the Update button is pressed. A row that's already locked (its
+  // checked state survived a previous Update) can no longer be toggled.
+  const toggleRowChecked = (rowId) => {
+    setMovementRows((currentRows) => {
+      const total = currentRows.length;
 
-      const nextChecked = !row.checked;
-      const isStartRow = row.currentStatus === 'Start';
+      return currentRows.map((row, index) => {
+        if (row.id !== rowId || row.locked) {
+          return row;
+        }
 
-      if (nextChecked) {
+        const nextChecked = !row.checked;
+        const effectiveStatus = getEffectiveStatus(row.currentStatus, index, total);
+        const hasFixedStatus = effectiveStatus === 'Start' || effectiveStatus === 'End';
+
+        if (nextChecked) {
+          return {
+            ...row,
+            checked: nextChecked,
+            currentStatus: hasFixedStatus ? effectiveStatus : 'Completed',
+            movementDateTime: formatNowAsMovementDateTime(),
+          };
+        }
+
         return {
           ...row,
           checked: nextChecked,
-          currentStatus: isStartRow ? 'Start' : 'Completed',
-          movementDateTime: formatNowAsMovementDateTime(),
+          currentStatus: hasFixedStatus ? effectiveStatus : 'Planned',
+          movementDateTime: '',
         };
-      }
-
-      return {
-        ...row,
-        checked: nextChecked,
-        currentStatus: isStartRow ? 'Start' : 'Planned',
-        movementDateTime: '',
-      };
+      });
     });
 
-    setMovementRows(updatedRows);
-
-    if (!isExistingTrain) {
-      return;
-    }
-
-    try {
-      setSaveError('');
-      setSaveMessage('');
-
-      const movementHistory = updatedRows.map((row) => ({
-        currentStation: row.currentStation,
-        latitude: row.latitude,
-        longitude: row.longitude,
-        movementDateTime: row.movementDateTime,
-        currentStatus: row.currentStatus,
-        remarks: row.remarks,
-      }));
-
-      const response = await updateMovements(trainId, movementHistory);
-      setSaveMessage(response?.message || 'Movement status updated in Zoho Creator.');
-    } catch (error) {
-      setSaveError(error?.response?.data?.message || 'Unable to update the movement history.');
-    }
+    setSaveMessage('');
   };
 
   const handleNextFromDetails = () => {
@@ -280,9 +291,14 @@ function MisoTrainMovementPage() {
   };
 
   const handleSaveNewTrain = async (nextRows) => {
+    const normalizedRows = nextRows.map((row, index) => ({
+      ...row,
+      currentStatus: getEffectiveStatus(row.currentStatus, index, nextRows.length),
+    }));
+
     const payload = {
       trainDetails,
-      movementHistory: nextRows.map((row) => ({
+      movementHistory: normalizedRows.map((row) => ({
         currentStation: row.currentStation,
         latitude: row.latitude,
         longitude: row.longitude,
@@ -294,7 +310,7 @@ function MisoTrainMovementPage() {
 
     const response = await saveTrain(payload);
 
-    setMovementRows(normalizeRowState(nextRows));
+    setMovementRows(normalizeRowState(normalizedRows));
     setSaveMessage(response?.message || 'Train details and movement history saved successfully.');
   };
 
@@ -523,6 +539,7 @@ function MisoTrainMovementPage() {
                           className="miso-select-checkbox"
                           checked={Boolean(row.checked)}
                           onChange={() => toggleRowChecked(row.id)}
+                          disabled={Boolean(row.locked)}
                         />
                       </td>
                       <td>{row.movementDateTime}</td>

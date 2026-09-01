@@ -490,10 +490,44 @@ select.miso-input {
 }
 
 .miso-select-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
-  accent-color: #0a8a5f;
+  margin: 0;
+  border: 2px solid #0a8a5f;
+  border-radius: 4px;
+  background-color: #fff;
   cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.miso-select-checkbox:checked {
+  background-color: #0a8a5f;
+  border-color: #0a8a5f;
+}
+
+.miso-select-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.miso-select-checkbox:disabled {
+  cursor: not-allowed;
+}
+
+.miso-select-checkbox:disabled:checked {
+  background-color: #0a8a5f;
+  border-color: #0a8a5f;
 }
 
 @keyframes miso-fade-in {
