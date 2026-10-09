@@ -1,0 +1,673 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: #e7e8f5;
+  color: #1a2038;
+  --primary: #5b3df0;
+  --primary-strong: #3f22c9;
+  --accent: #12b8a6;
+  --accent-strong: #0d9488;
+  --bg: #e7e8f5;
+  --card: #ffffff;
+  --border: #e2e0fb;
+  --text: #1a2038;
+  --muted: #6b7290;
+  --danger: #e11d48;
+  --success: #12b886;
+  --shadow: 0 20px 45px rgba(63, 34, 201, 0.1);
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(
+      circle at 8% 0%,
+      rgba(91, 61, 240, 0.16),
+      transparent 38%
+    ),
+    radial-gradient(circle at 92% 8%, rgba(18, 184, 166, 0.14), transparent 42%),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(91, 61, 240, 0.08),
+      transparent 55%
+    ),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Subtle custom scrollbars for a more polished feel */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c3bdf7, #a49bef);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ada3f5, #8f81ec);
+}
+
+.miso-page-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+  width: 100%;
+}
+
+.miso-hero-banner {
+  margin-bottom: 28px;
+  position: relative;
+  padding: 30px 32px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4b2fd6 0%, #6d3ff2 45%, #12b8a6 130%);
+  box-shadow: 0 25px 50px rgba(63, 34, 201, 0.28);
+  animation: miso-fade-in 0.5s ease both;
+}
+
+.miso-hero-banner > div {
+  position: relative;
+  z-index: 1;
+}
+
+.miso-hero-banner h1 {
+  margin: 0;
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.miso-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.miso-subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.miso-hero-banner .miso-subtitle {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.miso-hero-banner .miso-btn-secondary {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.miso-hero-banner .miso-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.miso-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 26px;
+  margin-bottom: 24px;
+  animation: miso-fade-in 0.45s ease both;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.miso-card:hover {
+  box-shadow: 0 28px 55px rgba(63, 34, 201, 0.14);
+}
+
+.miso-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ece9fc;
+  position: relative;
+}
+
+.miso-card-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 56px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.miso-card-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #221947;
+  letter-spacing: -0.01em;
+}
+
+.miso-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.miso-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.miso-field-label {
+  color: #372e5c;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.miso-input,
+.miso-input:focus {
+  width: 100%;
+  border: 1.5px solid #8f86c9;
+  border-radius: 10px;
+  background: #fbfbff;
+  color: #211a3d;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.miso-input:hover {
+  border-color: #6b5fc4;
+}
+
+.miso-input:focus,
+.miso-input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(91, 61, 240, 0.14);
+}
+
+.miso-input-error {
+  border-color: rgba(225, 29, 72, 0.7);
+}
+
+select.miso-input {
+  min-width: 140px;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.miso-field-error {
+  color: #b42348;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.miso-autocomplete-list {
+  position: absolute;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #e3e0fb;
+  border-radius: 12px;
+  box-shadow: 0 18px 38px rgba(63, 34, 201, 0.18);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.miso-autocomplete-list li {
+  padding: 9px 11px;
+  border-radius: 8px;
+  color: #251d47;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.miso-autocomplete-list li:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(91, 61, 240, 0.1),
+    rgba(18, 184, 166, 0.08)
+  );
+  color: var(--primary-strong);
+}
+
+.miso-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.miso-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.miso-table thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #4b2fd6 0%, #6d3ff2 100%);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 15px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 1;
+}
+
+.miso-table thead th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.miso-table thead th:last-child {
+  border-top-right-radius: 14px;
+}
+
+.miso-table tbody td {
+  vertical-align: top;
+  padding: 16px 14px;
+  border-bottom: 1px solid #f1eefb;
+  background: #fff;
+  transition: background 0.15s ease;
+}
+
+.miso-table tbody tr:nth-child(even) td {
+  background: #fbfaff;
+}
+
+.miso-table tbody tr:hover td {
+  background: #f4f1ff;
+}
+
+.miso-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.miso-btn,
+.miso-btn-action {
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.miso-btn-primary {
+  background: linear-gradient(135deg, var(--primary), #7a5af5);
+  color: #fff;
+  padding: 11px 18px;
+  box-shadow: 0 12px 24px rgba(91, 61, 240, 0.32);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.miso-btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 30px rgba(91, 61, 240, 0.38);
+}
+
+.miso-btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.miso-btn-success {
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  color: #fff;
+  padding: 11px 18px;
+  box-shadow: 0 12px 24px rgba(18, 184, 166, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.miso-btn-success:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 30px rgba(18, 184, 166, 0.36);
+}
+
+.miso-btn-secondary {
+  background: #f0edfd;
+  color: #4a3d80;
+  padding: 11px 18px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.miso-btn-secondary:hover {
+  background: #e5defb;
+  transform: translateY(-2px);
+}
+
+.miso-btn-action {
+  background: #f0edfd;
+  color: #4a3d80;
+  padding: 9px 12px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.miso-btn-action:hover {
+  background: #e2d9fb;
+  transform: translateY(-1px);
+}
+
+.miso-btn-action-danger {
+  background: #fff0f5;
+  color: var(--danger);
+}
+
+.miso-btn-action-danger:hover {
+  background: #ffe0ea;
+}
+
+.miso-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.miso-record-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.miso-actions-right {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.miso-save-message {
+  margin-top: 18px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: #ecfdf6;
+  color: #0a6e4d;
+  border: 1px solid #b9f0dc;
+  box-shadow: 0 10px 24px rgba(18, 184, 134, 0.1);
+  font-weight: 500;
+  animation: miso-fade-in 0.3s ease both;
+}
+
+.miso-save-message-error {
+  background: #fff2f5;
+  color: #b42348;
+  border-color: #f6c4d3;
+  box-shadow: 0 10px 24px rgba(180, 35, 72, 0.1);
+}
+
+/* Status pill badges (Start / Completed / End) shown in the movement table */
+.miso-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.miso-status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.miso-status-start {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.miso-status-completed {
+  background: #ecfdf6;
+  color: #0a8a5f;
+}
+
+.miso-status-end {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.miso-status-default {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.miso-tag-recorded {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.miso-select-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 2px solid #0a8a5f;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.miso-select-checkbox:checked {
+  background-color: #0a8a5f;
+  border-color: #0a8a5f;
+}
+
+.miso-select-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.miso-select-checkbox:disabled {
+  cursor: not-allowed;
+}
+
+.miso-select-checkbox:disabled:checked {
+  background-color: #0a8a5f;
+  border-color: #0a8a5f;
+}
+
+@keyframes miso-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 960px) {
+  .miso-page-shell {
+    padding: 24px 16px 40px;
+  }
+
+  .miso-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .miso-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 700px) {
+  .miso-page-shell {
+    padding-inline: 14px;
+  }
+
+  .miso-hero-banner {
+    padding: 22px;
+  }
+
+  .miso-hero-banner h1 {
+    font-size: 1.6rem;
+  }
+
+  .miso-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .miso-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .miso-card-header,
+  .miso-table-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .miso-actions-right {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .miso-actions-right .miso-btn {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .miso-table thead th,
+  .miso-table tbody td {
+    padding: 12px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .miso-page-shell {
+    padding: 18px 10px 32px;
+  }
+
+  .miso-hero-banner {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .miso-eyebrow {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+  }
+
+  .miso-hero-banner h1 {
+    font-size: 1.3rem;
+  }
+
+  .miso-hero-banner .miso-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .miso-card {
+    padding: 14px;
+  }
+
+  .miso-card-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .miso-btn,
+  .miso-btn-action {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+  }
+
+  .miso-table {
+    min-width: 760px;
+  }
+
+  .miso-status-badge {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+}
+
+.miso-view[hidden] {
+  display: none !important;
+}
+.miso-input:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  background: #f3f1fb;
+}
+.miso-table tbody tr.miso-row-clickable {
+  cursor: pointer;
+}
+.miso-field-compact .miso-field-label {
+  display: none;
+}
+.miso-hero-banner .miso-btn-secondary {
+  margin-bottom: 16px;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MISO Train Movement Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./widgetsdk-min.js"></script>
+    <script src="stations-data.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- LIST VIEW -->
+      <main id="list-view" class="miso-page-shell miso-view">
+        <section class="miso-hero-banner">
+          <div>
+            <p class="miso-eyebrow">Train Tracking</p>
+            <h1>MISO Train Movement Management</h1>
+            <p class="miso-subtitle">
+              Enter a train's details to open its movement history, or a new
+              train number to create one.
+            </p>
+          </div>
+        </section>
+
+        <section class="miso-card">
+          <div class="miso-card-header">
+            <h2>Train Details</h2>
+          </div>
+
+          <form id="list-details-form">
+            <div class="miso-form-grid">
+              <div class="miso-field" data-autocomplete="list-train-number">
+                <span class="miso-field-label">Train Number</span>
+                <input
+                  id="list-train-number"
+                  class="miso-input"
+                  type="text"
+                  placeholder="e.g. MS-1010"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="miso-field" data-autocomplete="list-train-name">
+                <span class="miso-field-label">Train Name</span>
+                <input
+                  id="list-train-name"
+                  class="miso-input"
+                  type="text"
+                  placeholder="Enter train name"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="miso-field">
+                <span class="miso-field-label">Route Name</span>
+                <input
+                  id="list-route-name"
+                  class="miso-input"
+                  type="text"
+                  placeholder="Enter route name"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div
+              id="list-form-error"
+              class="miso-save-message miso-save-message-error"
+              hidden
+            ></div>
+            <div
+              id="list-load-error"
+              class="miso-save-message miso-save-message-error"
+              hidden
+            ></div>
+
+            <div class="miso-table-footer">
+              <span></span>
+              <div class="miso-actions-right">
+                <button type="submit" class="miso-btn miso-btn-primary">
+                  Next →
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <section class="miso-card">
+          <div class="miso-card-header">
+            <h2>All Trains</h2>
+          </div>
+          <p id="list-loading" class="miso-subtitle">Loading trains...</p>
+          <div id="list-table-wrap" class="miso-table-wrap" hidden>
+            <table class="miso-table" style="min-width: 760px">
+              <thead>
+                <tr>
+                  <th>Train Number</th>
+                  <th>Train Name</th>
+                  <th>Route Name</th>
+                  <th>Movement Records</th>
+                </tr>
+              </thead>
+              <tbody id="trains-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <!-- MOVEMENT VIEW -->
+      <main id="movement-view" class="miso-page-shell miso-view" hidden>
+        <section class="miso-hero-banner">
+          <button
+            type="button"
+            id="btn-back-list"
+            class="miso-btn miso-btn-secondary"
+          >
+            ← Back to Train List
+          </button>
+          <div>
+            <p class="miso-eyebrow">Train Tracking</p>
+            <h1>MISO Train Movement Management</h1>
+            <p id="movement-subtitle" class="miso-subtitle">
+              Movement history for this train.
+            </p>
+          </div>
+        </section>
+
+        <div id="movement-loading" class="miso-subtitle" hidden>
+          Loading train details...
+        </div>
+        <div
+          id="movement-load-error"
+          class="miso-save-message miso-save-message-error"
+          hidden
+        ></div>
+
+        <!-- Step 1: editable train details (create only) -->
+        <section id="details-step-card" class="miso-card" hidden>
+          <div class="miso-card-header">
+            <h2>Train Details</h2>
+          </div>
+          <div class="miso-form-grid">
+            <div class="miso-field">
+              <span class="miso-field-label">Train Number</span>
+              <input
+                id="mv-train-number"
+                class="miso-input"
+                type="text"
+                placeholder="Enter train number"
+              />
+            </div>
+            <div class="miso-field">
+              <span class="miso-field-label">Train Name</span>
+              <input
+                id="mv-train-name"
+                class="miso-input"
+                type="text"
+                placeholder="Enter train name"
+              />
+            </div>
+            <div class="miso-field">
+              <span class="miso-field-label">Route Name</span>
+              <input
+                id="mv-route-name"
+                class="miso-input"
+                type="text"
+                placeholder="Enter route name"
+              />
+            </div>
+          </div>
+          <div
+            id="details-step-error"
+            class="miso-save-message miso-save-message-error"
+            hidden
+          ></div>
+          <div class="miso-table-footer">
+            <span></span>
+            <div class="miso-actions-right">
+              <button
+                type="button"
+                id="btn-details-cancel"
+                class="miso-btn miso-btn-secondary"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                id="btn-details-next"
+                class="miso-btn miso-btn-primary"
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Read-only train details -->
+        <section id="readonly-details-card" class="miso-card" hidden>
+          <div class="miso-card-header">
+            <h2>Train Details</h2>
+          </div>
+          <div class="miso-form-grid">
+            <div class="miso-field">
+              <span class="miso-field-label">Train Number</span>
+              <input
+                id="ro-train-number"
+                class="miso-input"
+                type="text"
+                disabled
+              />
+            </div>
+            <div class="miso-field">
+              <span class="miso-field-label">Train Name</span>
+              <input
+                id="ro-train-name"
+                class="miso-input"
+                type="text"
+                disabled
+              />
+            </div>
+            <div class="miso-field">
+              <span class="miso-field-label">Route Name</span>
+              <input
+                id="ro-route-name"
+                class="miso-input"
+                type="text"
+                disabled
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- Movement history -->
+        <section id="movement-step-card" class="miso-card" hidden>
+          <div class="miso-card-header">
+            <h2>Movement History</h2>
+          </div>
+
+          <div class="miso-table-wrap">
+            <table class="miso-table">
+              <thead>
+                <tr>
+                  <th style="min-width: 220px">Current Station</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                  <th>Current Status</th>
+                  <th style="text-align: center">Status Update</th>
+                  <th>Movement Date &amp; Time</th>
+                  <th>Remarks</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="movement-body"></tbody>
+            </table>
+          </div>
+
+          <div class="miso-table-footer">
+            <span id="movement-count" class="miso-record-count"
+              >0 movement record(s)</span
+            >
+            <div class="miso-actions-right">
+              <button
+                type="button"
+                id="btn-mv-back"
+                class="miso-btn miso-btn-secondary"
+                hidden
+              >
+                ← Back
+              </button>
+              <button
+                type="button"
+                id="btn-add-movement"
+                class="miso-btn miso-btn-success"
+                hidden
+              >
+                + Add Movement
+              </button>
+              <button
+                type="button"
+                id="btn-mv-cancel"
+                class="miso-btn miso-btn-secondary"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                id="btn-mv-save"
+                class="miso-btn miso-btn-primary"
+              >
+                Save Train Details
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="movement-save-message"
+            class="miso-save-message"
+            hidden
+          ></div>
+          <div
+            id="movement-save-error"
+            class="miso-save-message miso-save-message-error"
+            hidden
+          ></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
